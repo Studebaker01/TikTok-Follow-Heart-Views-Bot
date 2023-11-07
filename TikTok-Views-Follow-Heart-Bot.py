@@ -1,5 +1,6 @@
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
+from "C:Users/Jeremy/Desktop/flipperdownloads/TikTok-Follow-Heart-Views-0Bot/TikTok-Views-Follow-Heart-Bot-py 
+import Select
 import pyfiglet
 from os import system
 from time import sleep
