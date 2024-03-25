@@ -1,10 +1,9 @@
 from selenium import webdriver
-from "C:Users/Jeremy/Desktop/flipperdownloads/TikTok-Follow-Heart-Views-0Bot/TikTok-Views-Follow-Heart-Bot-py 
-import Select
 import pyfiglet
 from os import system
 from time import sleep
 import sys
+from selenium import webdriver
 
 chrome_options = webdriver.ChromeOptions()
 #chrome_options.add_argument('--headless')
@@ -17,13 +16,17 @@ i = 0
 def loop1():
     global i
     sleep(10)
+    CAPTCHA_ERROR_MESSAGE = "You didn't solve the captcha yet. Need to refresh to avoid endless loop."
+
     try:
         driver.find_element_by_xpath("/html/body/div[4]/div[1]/div[3]/div/div[4]/div/button").click()
-    except:
-        print("You didn't solve the captcha yet. Need to refresh to avoid endless loop.")
+    except Exception:
+        print(CAPTCHA_ERROR_MESSAGE)
         driver.refresh()
         loop1()
     try:
+        ERROR_MESSAGE = "An error occurred. Now will retry again"
+
         sleep(2)
         driver.find_element_by_xpath("//*[@id=\"sid4\"]/div/div/div/form/div/input").send_keys(vidUrl)
         sleep(1)
@@ -36,8 +39,8 @@ def loop1():
         print("Views success delivered! Total", total,"views")
         sleep(55)
         loop1()
-    except:
-        print("An error occured. Now will retry again")
+    except Exception:
+        print(ERROR_MESSAGE)
         driver.refresh()
         loop1()
 
@@ -45,7 +48,7 @@ def loop2():
     sleep(10)
     try:
         driver.find_element_by_xpath("/html/body/div[4]/div[1]/div[3]/div/div[2]/div/button").click()
-    except:
+    except Exception:
         print("You didn't solve the captcha yet. Need to refresh to avoid endless loop.")
         driver.refresh()
         loop2()
@@ -64,13 +67,14 @@ def loop2():
         driver.refresh()
         sleep(200)
         loop2()
-    except:
-        print("An error occured. Now will retry again")
+    except Exception:
+        print("An error occurred. Now will retry again")
         driver.refresh()
         sleep(355)
         loop2()
 
 def loop3():
+    # This function is intentionally left empty.
     pass
 
 def loop4():
@@ -78,7 +82,7 @@ def loop4():
     wait_time = 660 #11 minutes
     try:
         driver.find_element_by_xpath("/html/body/div[4]/div[1]/div[3]/div/div[1]/div/button").click() #Followers
-    except:
+    except Exception:
         print("You didn't solve the captcha yet. Need to refresh to avoid endless loop.")
         driver.refresh()
         loop4()
@@ -95,7 +99,7 @@ def loop4():
         driver.refresh()
         sleep(wait_time/3)
         loop4()
-    except:
+    except Exception:
         print("Oops!", sys.exc_info()[0], "occurred.")
         print("An error occurred. Now will retry again")
         driver.refresh()
@@ -126,8 +130,9 @@ if bot == 1:
 elif bot == 2:
     loop2()
 elif bot == 3:
+    # Add your code for the bot == 3 case here
+    # Example: loop3()
     pass
 else:
     loop4()
-    pass
 
